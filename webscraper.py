@@ -22,7 +22,7 @@ class USPSTracking:
         return 'https://tools.usps.com/go/TrackConfirmAction.action'
 
     def get(self, tracking_number:str):
-        full_url = f'{self.base_url}?tlabels={tracking_number}'
+        full_url = f'{self.base_url}?tLabels={tracking_number}'
         response = self.client.get(
             url=full_url,
             allow_redirects=False
@@ -50,7 +50,7 @@ class USPSTracking:
             date_str = date_split[0] + date_split[1] + ' ' + date_split[2].replace('\n', '').replace('\t', '')
             date_format = '%B %d %Y %H:%M %p'
             date = datetime.datetime.strptime(date_str, date_format)
-            
+
             data_dict = {
                 'status': status,
                 'status_detail': status_detail,
@@ -59,8 +59,3 @@ class USPSTracking:
 
             }
         return data_dict
-
-
-
-
-
